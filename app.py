@@ -1,93 +1,113 @@
 import streamlit as st
 
-# 1. FORÇANDO O SITE A PEGAR A TELA INTEIRA (Seguro e Nativo)
+# 1. FORÇANDO O SITE A PEGAR A TELA INTEIRA (Nativo e Limpo)
 st.set_page_config(
     page_title="RVCX Software - Terminal Oficial", 
-    page_icon="🤖", 
     layout="wide"
 )
 
-# 2. INJEÇÃO DE ESTILOS COM COMANDO BLINDADO (Sem JavaScript para não quebrar)
+# 2. DESIGN PROFISSIONAL HACKER ABSOLUTO (Sem Amadorismo)
 st.html("""
     <style>
-    html, body, [data-testid="stAppViewContainer"] {
+    /* Reset de Fundo e Cores para Estilo Terminal de Elite */
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+        background-color: #000000 !important;
+        color: #00ffcc !important;
         font-family: 'Courier New', Courier, monospace !important;
-        background-color: #06090e !important;
+    }
+    h1, h2, h3, p, span, div, li, a {
+        font-family: 'Courier New', Courier, monospace !important;
         color: #00ffcc !important;
     }
-    h1, h2, h3, p, span, .stMetric {
-        font-family: 'Courier New', Courier, monospace !important;
-    }
-    /* Deixa os botões com visual neon rosa */
+    /* Estilização Cirúrgica do Botão de Ação */
     div.stButton > button, div.stLinkButton > a {
-        background-color: #ff0055 !important;
-        color: white !important;
-        border: 2px solid #ff0055 !important;
-        box-shadow: 0 0 15px #ff0055 !important;
+        background-color: #000000 !important;
+        color: #00ffcc !important;
+        border: 1px solid #00ffcc !important;
+        border-radius: 0px !important;
         font-weight: bold !important;
+        letter-spacing: 2px !important;
+        padding: 20px !important;
+        transition: all 0.3s ease;
+    }
+    div.stButton > button:hover, div.stLinkButton > a:hover {
+        background-color: #00ffcc !important;
+        color: #000000 !important;
+        box-shadow: 0 0 15px #00ffcc;
+    }
+    /* Ajuste de abas para manter o padrão escuro */
+    button[data-testid="stMarkdownContainer"] {
+        color: #00ffcc !important;
     }
     </style>
 """)
 
-# --- DIVISÃO DA TELA INTEIRA EM DUAS COLUNAS LARGAS ---
+# --- ESTRUTURA EM DUAS COLUNAS LARGAS ---
 col_esquerda, col_direita = st.columns([1.2, 1])
 
 with col_esquerda:
-    st.title("🤖 RVCX SOFTWARE CORE v2.0")
-    st.write("🌐 Link de Autenticação de Protocolos de Inteligência Artificial")
+    st.markdown("# RVCX SOFTWARE CORE v2.0")
+    st.markdown("### AUTENTICACAO DE PROTOCOLOS DE INTELIGENCIA ARTIFICIAL")
+    st.write("---")
     
-    # Espaço do seu Mascote Robô IA (substitua no GitHub por painel.png)
-    st.image("painel.png", caption="RVCX AI Androide de Operações", use_container_width=True)
+    # Exibição do seu Mascote Robô Principal (Fica do lado esquerdo)
+    st.image("painel.png", use_container_width=True)
     
     st.write("---")
     
-    # Tabela de Performance expandida nas laterais
-    st.subheader("⏱️ Comparativo Real de Performance")
+    # Tabela de Performance
+    st.markdown("### METRICAS DE PERFORMANCE EM PRODUTIVIDADE")
     dados_comparativos = {
-        "Atividade": ["Pesquisar produtos", "Criar texto de venda", "Inserir link afiliado", "Postar nos canais"],
-        "Modo Manual": ["45 minutos", "20 minutos", "5 minutos", "15 minutes"],
-        "RVCX Software": ["3 segundos", "1.5 segundo", "Automático", "Imediato"]
+        "ATIVIDADE": ["Minerar produtos", "Criar copy de venda", "Inserir link de afiliado", "Postar nos canais"],
+        "METODO MANUAL": ["45 minutos", "20 minutos", "5 minutos", "15 minutos"],
+        "SISTEMA RVCX": ["3 segundos", "1.5 segundo", "Automatizado", "Imediato"]
     }
     st.table(dados_comparativos)
 
 with col_direita:
-    # Monitoramento de Conexão com cores vibrantes hacker
-    st.subheader("📊 Status e Latência do Sistema")
-    c1, c2, c3 = st.columns(3)
-    with c1: st.success("● ENGINE ONLINE")
-    with c2: st.info("🧠 NEURAL: 3")
-    with c3: st.warning("⚡ LATÊNCIA: 12ms")
+    # Monitoramento Técnico de Conexão (Texto limpo simulando console real)
+    st.markdown("### STATUS DO SISTEMA")
+    st.text("STATUS DO MOTOR: ONLINE")
+    st.text("REDE NEURAL ACTIVATED: ASYNC_v3")
+    st.text("LATENCIA DE REDE: 12ms")
+    st.write("---")
     
-    # Terminal interativo hacker
-    with st.expander("👁️ VISUALIZAR TERMINAL DA AUTOMAÇÃO", expanded=True):
-        st.code("""
+    # Terminal de comando limpo
+    st.text("LOG DE OPERACOES EM TEMPO REAL:")
+    st.code("""
 [INFO] Inicializando RVCX Software...
-[OK] Conexão com Banco de Dados Shopee/Amazon estabelecida.
+[OK] Conexao com Banco de Dados Shopee/Amazon estabelecida.
 [OK] API ChatGPT vinculada com sucesso.
-[MINERAÇÃO] 14 Produtos virais localizados nas últimas 2 horas.
-[SISTEMA] Aguardando ativação da licença do usuário para liberar download...
-        """, language="text")
-        
+[MINERACAO] 14 Produtos virais localizados nas ultimas 2 horas.
+[SISTEMA] Aguardando ativacao da licenca para liberar download...
+    """, language="text")
+    
     st.write("---")
     
-    # Seção interativa de Benefícios por abas
-    st.subheader("💡 Vantagens do Sistema")
-    tab1, tab2 = st.tabs(["🎯 Mineração", "🚀 Postagens"])
+    # Imagem do robô apontando para o código Python real (Fica do lado direito)
+    st.image("robo_codigo.png", use_container_width=True)
+    
+    st.write("---")
+    
+    # Abas de vantagens sem firulas
+    st.markdown("### ARQUITETURA CRIPTOGRAFADA")
+    tab1, tab2 = st.tabs(["MINERACAO", "POSTAGENS"])
     with tab1:
-        st.markdown("### 🔍 Varredura de Produtos Virais")
-        st.write("O script roda em segundo plano minerando os produtos que mais estão vendendo nas plataformas da Shopee e Amazon.")
+        st.write("O script roda em background minerando os produtos de maior engajamento e conversao do dia nas plataformas integradas.")
     with tab2:
-        st.markdown("### 📡 Disparo Automatizado")
-        st.write("O robô formata a mensagem gerada pela inteligência artificial e envia diretamente para canais estruturados de ofertas.")
+        st.write("O robo estrutura o payload gerado pela IA e efetua o disparo em massa para os canais de ofertas configurados.")
 
     st.write("---")
 
-    # Área de Ativação e Botão de Compra
-    st.subheader("🪙 Ativação do Protocolo Vitalício")
-    st.metric(label="Valor Único Promocional", value="R$ 29,90")
-    
+    # Área de Licenciamento e Botão
+    st.markdown("### LICENCIAMENTO VITALICIO")
+    st.markdown("## VALOR DO PROTOCOLO: R$ 29,90")
+    st.write("")
+
     # --- CONFIGURAÇÃO DE CHECKOUT INTEGRADO (INFINITEPAY) ---
-    INFINITE_TAG = "sua_tag_aqui"  # Mude para sua tag real depois!
+    # Troque pelo seu usuario da InfinitePay quando puder
+    INFINITE_TAG = "sua_tag_aqui"  
+    
     item_nome = "RVCX_Robo_Afiliado"
     item_preco = 2990  
     pedido_id = "RVCX999" 
@@ -103,24 +123,23 @@ with col_direita:
     query_params = st.query_params
 
     if "capture_method" in query_params:
-        st.balloons()
-        st.success("🎉 AUTENTICAÇÃO CONFIRMADA! Licença vitalícia ativada.")
-        script_texto = "# RVCX Software - Instalador automatico\nprint('Automacao carregada!')"
+        st.success("AUTENTICACAO CONFIRMADA. LICENCA VITALICIA ATIVADA.")
+        script_texto = "# RVCX Software\nprint('Script Carregado')"
         st.download_button(
-            label="📥 CLIQUE PARA INSTALAR O ROBÔ (rvcx_bot.py)",
+            label="DOWNLOAD RVCX_BOT.PY",
             data=script_texto,
             file_name="rvcx_bot.py",
             mime="text/x-python",
             use_container_width=True
         )
     else:
-        st.link_button("⚡ ATIVAR LICENÇA E INSTALAR ROBÔ AGORA", link_pagamento, use_container_width=True)
+        st.link_button("ATIVAR LICENCA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
 
 st.write("---")
-# Perguntas Frequentes no rodapé
+# Perguntas Frequentes
 with st.container():
-    st.subheader("❓ Perguntas Frequentes (FAQ)")
-    st.markdown("**Preciso saber programar para usar o robô?**")
-    st.write("Não! O script vai totalmente pronto e mastigado. Junto com o arquivo, você recebe um mini-tutorial em vídeo de 3 minutos ensinando como ligar ele no seu computador com apenas dois cliques.")
+    st.markdown("### PERGUNTAS FREQUENTES")
+    st.markdown("**Necessito de conhecimento previo em programacao?**")
+    st.write("Nao. O script e entregue totalmente estruturado. O pacote inclui instrucoes em formato de texto direto para inicializacao em menos de dois cliques.")
 
-st.caption("© 2026 RVCX Software Terminal. Transações processadas via criptografia militar InfinitePay®.")
+st.caption("RVCX Software Terminal. Transacoes processadas via gateway de seguranca InfinitePay.")
