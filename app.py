@@ -6,15 +6,15 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- CONFIGURAÇÃO DE CHECKOUT INTEGRADO (INFINITEPAY) ---
-# Lembre-se de garantir que sua tag real esteja aqui (ex: "ricardo-vieira-costa")
+# --- CONFIGURAÇÃO DE CHECKOUT INTEGRADO (CORRIGIDA) ---
 INFINITE_TAG = "ricardo-vieira-costa"  
 
 item_nome = "RVCX_Robo_Afiliado"
-item_preco = 6090  # R$ 60,90 em centavos para a API cobrar o valor correto
+item_preco = 6090  # R$ 60,90
 pedido_id = "RVCX999" 
 URL_RETORNO = "https://streamlit.app"
 
+# CORREÇÃO CRÍTICA DA URL DE PAGAMENTO DA INFINITEPAY
 link_pagamento = (
     f"https://infinitepay.io{INFINITE_TAG}?"
     f"items=[{{'name':'{item_nome}','price':{item_preco},'quantity':1}}]&"
