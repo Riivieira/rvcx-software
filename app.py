@@ -6,18 +6,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# 2. INJEÇÃO DE ESTILO SEGURA VIA MARKDOWN PARA O GLOW NEON
-st.markdown("""
-    <style>
-    /* Aplica o brilho ciano suave nas bordas de todas as fotos do site */
-    [data-testid="stImage"] img {
-        border-radius: 6px !important;
-        box-shadow: 0 0 20px rgba(0, 240, 255, 0.25) !important;
-        border: 1px solid rgba(0, 240, 255, 0.15) !important;
-    }
-    </style>
-""", unsafe_allowed_html=True)
-
 # --- ESTRUTURA EM DUAS COLUNAS LARGAS NATIVAS ---
 col_esquerda, col_direita = st.columns([1.2, 1])
 
@@ -29,7 +17,7 @@ with col_esquerda:
     # Foto 1: Mascote Principal
     st.image("painel.png", use_container_width=True)
     
-    # ESPAÇADOR GRANDE PARA AFASTAR AS FOTOS
+    # Espaçadores nativos e seguros para afastar as imagens
     st.write("")
     st.write("")
     st.write("")
@@ -71,7 +59,7 @@ with col_direita:
     # Foto 3: Robo no Escritorio
     st.image("robo_escritorio.png", use_container_width=True)
     
-    # ESPAÇADOR GRANDE PARA AFASTAR AS FOTOS
+    # Espaçadores nativos e seguros para afastar as imagens
     st.write("")
     st.write("")
     st.write("")
