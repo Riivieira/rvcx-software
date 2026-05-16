@@ -6,21 +6,8 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- CONFIGURAÇÃO DE CHECKOUT INTEGRADO (CORRIGIDA) ---
-INFINITE_TAG = "ricardo-vieira-costa"  
-
-item_nome = "RVCX_Robo_Afiliado"
-item_preco = 6090  # R$ 60,90
-pedido_id = "RVCX999" 
-URL_RETORNO = "https://streamlit.app"
-
-# CORREÇÃO CRÍTICA DA URL DE PAGAMENTO DA INFINITEPAY
-link_pagamento = (
-    f"https://infinitepay.io{INFINITE_TAG}?"
-    f"items=[{{'name':'{item_nome}','price':{item_preco},'quantity':1}}]&"
-    f"order_nsu={pedido_id}&"
-    f"redirect_url={URL_RETORNO}"
-)
+# --- LINK REAL DE COBRANÇA DA INFINITEPAY GENERADO PELO USUÁRIO ---
+link_pagamento = "https://link.infinitepay.io/ricardo-vieira-costa/VC1DLTEtSQ-Hqt0uDRoVZ-60,90"
 
 # Captura os parâmetros de retorno pós-pagamento
 query_params = st.query_params
