@@ -7,11 +7,11 @@ st.set_page_config(
 )
 
 # --- CONFIGURAÇÃO DE CHECKOUT INTEGRADO (INFINITEPAY) ---
-# Altere o valor abaixo para a sua InfiniteTag real do aplicativo
-INFINITE_TAG = "sua_tag_aqui"  
+# Lembre-se de garantir que sua tag real esteja aqui (ex: "ricardo-vieira-costa")
+INFINITE_TAG = "ricardo-vieira-costa"  
 
 item_nome = "RVCX_Robo_Afiliado"
-item_preco = 2990  
+item_preco = 6090  # R$ 60,90 em centavos para a API cobrar o valor correto
 pedido_id = "RVCX999" 
 URL_RETORNO = "https://streamlit.app"
 
@@ -31,7 +31,7 @@ st.markdown("# RVCX SOFTWARE CORE v2.0")
 st.markdown("### SISTEMA OPERACIONAL DE MINERAÇÃO E VENDAS AUTOMÁTICAS POR IA")
 st.write("---")
 
-# --- BLOCO 1: APRESENTAÇÃO DO CORE (AGORA COM BOTÃO NO TOPO) ---
+# --- BLOCO 1: APRESENTAÇÃO DO CORE ---
 col1_img, col1_txt = st.columns([1.2, 1])
 with col1_img:
     st.image("painel.png", use_container_width=True)
@@ -45,7 +45,6 @@ with col1_txt:
     st.text("Status da Engine: Ativa")
     st.write("")
     
-    # ⚡ BOTÃO DO TOPO ADICIONADO AQUI
     if pagamento_aprovado:
         st.success("LICENÇA ATIVADA.")
     else:
@@ -121,11 +120,10 @@ with col_dados:
 
 with col_checkout:
     st.markdown("### LICENCIAMENTO VITALÍCIO")
-    st.markdown("## VALOR DO PROTOCOLO: R$ 29,90")
+    st.markdown("## VALOR DO PROTOCOLO: R$ 60,90")
     st.write("A ativação inclui o arquivo do script original e acesso gratuito a todas as atualizações de código.")
     st.write("")
 
-    # ⚡ BOTÃO DO FINAL DO SITE (DOWNLOAD OU COMPRA)
     if pagamento_aprovado:
         st.balloons()
         st.success("🎉 AUTENTICAÇÃO CONFIRMADA! Licença vitalícia ativada.")
