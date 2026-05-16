@@ -6,30 +6,57 @@ st.set_page_config(
     layout="wide"
 )
 
+# --- CONFIGURAÇÃO DE CHECKOUT INTEGRADO (INFINITEPAY) ---
+# Altere o valor abaixo para a sua InfiniteTag real do aplicativo
+INFINITE_TAG = "sua_tag_aqui"  
+
+item_nome = "RVCX_Robo_Afiliado"
+item_preco = 2990  
+pedido_id = "RVCX999" 
+URL_RETORNO = "https://streamlit.app"
+
+link_pagamento = (
+    f"https://infinitepay.io{INFINITE_TAG}?"
+    f"items=[{{'name':'{item_nome}','price':{item_preco},'quantity':1}}]&"
+    f"order_nsu={pedido_id}&"
+    f"redirect_url={URL_RETORNO}"
+)
+
+# Captura os parâmetros de retorno pós-pagamento
+query_params = st.query_params
+pagamento_aprovado = "capture_method" in query_params
+
 # --- ESCUDO DO PORTAL (TOPO DO SITE) ---
 st.markdown("# RVCX SOFTWARE CORE v2.0")
 st.markdown("### SISTEMA OPERACIONAL DE MINERAÇÃO E VENDAS AUTOMÁTICAS POR IA")
 st.write("---")
 
-# --- BLOCO 1: APRESENTAÇÃO DO CORE ---
+# --- BLOCO 1: APRESENTAÇÃO DO CORE (AGORA COM BOTÃO NO TOPO) ---
 col1_img, col1_txt = st.columns([1.2, 1])
 with col1_img:
     st.image("painel.png", use_container_width=True)
 with col1_txt:
-    st.markdown("## [01] MASCOTE CENTRAL CORE")
+    st.markdown("## MASCOTE CENTRAL CORE")
     st.write(
         "Este é o núcleo da inteligência artificial RVCX. O sistema roda de forma "
         "independente em nuvem assíncrona, conectando-se diretamente às APIs neurais "
         "para processar dados de mercado sem consumir a memória ou o processamento do seu computador."
     )
     st.text("Status da Engine: Ativa")
+    st.write("")
+    
+    # ⚡ BOTÃO DO TOPO ADICIONADO AQUI
+    if pagamento_aprovado:
+        st.success("LICENÇA ATIVADA.")
+    else:
+        st.link_button("⚡ ATIVAR LICENÇA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
 
 st.write("---")
 
 # --- BLOCO 2: MINERAÇÃO E TELAS ---
 col2_txt, col2_img = st.columns([1, 1.2])
 with col2_txt:
-    st.markdown("## [02] PAINEL DE MONITORAMENTO")
+    st.markdown("## PAINEL DE MONITORAMENTO")
     st.write(
         "Como visto na tela do sistema, o robô monitora em tempo real gráficos de faturamento, "
         "tendências e métricas de conversão. Ele varre as plataformas da Shopee e Amazon a cada "
@@ -46,7 +73,7 @@ col3_img, col3_txt = st.columns([1.2, 1])
 with col3_img:
     st.image("robo_codigo.png", use_container_width=True)
 with col3_txt:
-    st.markdown("## [03] ENGENHARIA DE PROMPT E CÓDIGO")
+    st.markdown("## ENGENHARIA DE PROMPT E CÓDIGO")
     st.write(
         "O robô possui um compilador interno em Python. Ao selecionar o produto viral, a inteligência "
         "artificial cria o script de vendas completo, embutindo o seu link de afiliado de forma "
@@ -59,7 +86,7 @@ st.write("---")
 # --- BLOCO 4: ARQUITETURA NEURAL ---
 col4_txt, col4_img = st.columns([1, 1.2])
 with col4_txt:
-    st.markdown("## [04] DISPARO EM MASSA E ANTIBLOQUEIO")
+    st.markdown("## DISPARO EM MASSA E ANTIBLOQUEIO")
     st.write(
         "A arquitetura interna do hardware simula o comportamento humano através de rotinas de atraso "
         "(Sleep delayed). Isso permite que o script envie os links gerados para centenas de canais, "
@@ -98,24 +125,10 @@ with col_checkout:
     st.write("A ativação inclui o arquivo do script original e acesso gratuito a todas as atualizações de código.")
     st.write("")
 
-    # --- CONFIGURACAO DE CHECKOUT INTEGRADO (INFINITEPAY) ---
-    INFINITE_TAG = "sua_tag_aqui"  # Lembre de mudar para a sua tag real depois!
-    item_nome = "RVCX_Robo_Afiliado"
-    item_preco = 2990  
-    pedido_id = "RVCX999" 
-    URL_RETORNO = "https://streamlit.app"
-
-    link_pagamento = (
-        f"https://infinitepay.io{INFINITE_TAG}?"
-        f"items=[{{'name':'{item_nome}','price':{item_preco},'quantity':1}}]&"
-        f"order_nsu={pedido_id}&"
-        f"redirect_url={URL_RETORNO}"
-    )
-
-    query_params = st.query_params
-
-    if "capture_method" in query_params:
-        st.success("Autenticacao confirmada. Licenca vitalicia ativada.")
+    # ⚡ BOTÃO DO FINAL DO SITE (DOWNLOAD OU COMPRA)
+    if pagamento_aprovado:
+        st.balloons()
+        st.success("🎉 AUTENTICAÇÃO CONFIRMADA! Licença vitalícia ativada.")
         script_texto = "# RVCX Software\nprint('Script Carregado')"
         st.download_button(
             label="DOWNLOAD RVCX_BOT.PY",
@@ -128,4 +141,10 @@ with col_checkout:
         st.link_button("ATIVAR LICENÇA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
 
 st.write("---")
+# Perguntas Frequentes
+with st.container():
+    st.markdown("### Perguntas Frequentes")
+    st.markdown("**Necessito de conhecimento prévio em programação?**")
+    st.write("Não. O script é entregue totalmente estruturado para inicialização em menos de dois cliques.")
+
 st.caption("RVCX Software Terminal. Transações processadas via gateway de segurança InfinitePay.")
