@@ -1,79 +1,114 @@
 import streamlit as st
 
-# 1. FORÇANDO O SITE A PEGAR A TELA INTEIRA (Nativo e Limpo)
+# 1. FORÇANDO O SITE A PEGAR A TELA INTEIRA
 st.set_page_config(
     page_title="RVCX Software - Terminal Oficial", 
     layout="wide"
 )
 
-# 2. DESIGN PROFISSIONAL HACKER ABSOLUTO (Sem Amadorismo)
+# 2. DESIGN PREMIUM SAAS COM LUMINOSIDADE NAS IMAGENS
 st.html("""
     <style>
-    /* Reset de Fundo e Cores para Estilo Terminal de Elite */
+    @import url('https://googleapis.com');
+    
     html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
-        background-color: #000000 !important;
-        color: #00ffcc !important;
-        font-family: 'Courier New', Courier, monospace !important;
+        background-color: #030407 !important;
+        color: #f8fafc !important;
+        font-family: 'Inter', sans-serif !important;
     }
-    h1, h2, h3, p, span, div, li, a {
-        font-family: 'Courier New', Courier, monospace !important;
-        color: #00ffcc !important;
+    
+    /* Efeito de luminosidade (Glow) nas 4 imagens */
+    [data-testid="stImage"] img {
+        border-radius: 8px !important;
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.25) !important;
+        border: 1px solid rgba(0, 240, 255, 0.2) !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    /* Estilização Cirúrgica do Botão de Ação */
+    [data-testid="stImage"] img:hover {
+        transform: scale(1.01);
+        box-shadow: 0 0 35px rgba(0, 240, 255, 0.4) !important;
+    }
+    
+    h1, h2, .neon-accent {
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 800 !important;
+        color: #00f0ff !important;
+        letter-spacing: -0.5px !important;
+    }
+    h3 {
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 600 !important;
+        color: #cbd5e1 !important;
+    }
+    p, span, div, li, a, td, th {
+        font-family: 'Inter', sans-serif !important;
+        color: #e2e8f0 !important;
+    }
+    
     div.stButton > button, div.stLinkButton > a {
-        background-color: #000000 !important;
-        color: #00ffcc !important;
-        border: 1px solid #00ffcc !important;
-        border-radius: 0px !important;
-        font-weight: bold !important;
-        letter-spacing: 2px !important;
-        padding: 20px !important;
-        transition: all 0.3s ease;
+        background-color: #00f0ff !important;
+        color: #030407 !important;
+        border: none !important;
+        border-radius: 6px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
+        padding: 16px 24px !important;
+        font-family: 'Inter', sans-serif !important;
+        box-shadow: 0 4px 20px rgba(0, 240, 255, 0.2);
+        transition: all 0.2s ease;
     }
     div.stButton > button:hover, div.stLinkButton > a:hover {
-        background-color: #00ffcc !important;
-        color: #000000 !important;
-        box-shadow: 0 0 15px #00ffcc;
+        background-color: #ffffff !important;
+        color: #030407 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 25px rgba(255, 255, 255, 0.3);
     }
-    /* Ajuste de abas para manter o padrão escuro */
-    button[data-testid="stMarkdownContainer"] {
-        color: #00ffcc !important;
+    
+    code, pre {
+        font-family: monospace !important;
+        background-color: #0b0f17 !important;
+        border: 1px solid #1e293b !important;
     }
     </style>
-""")
+""", unsafe_allowed_html=True)
 
 # --- ESTRUTURA EM DUAS COLUNAS LARGAS ---
 col_esquerda, col_direita = st.columns([1.2, 1])
 
 with col_esquerda:
     st.markdown("# RVCX SOFTWARE CORE v2.0")
-    st.markdown("### AUTENTICACAO DE PROTOCOLOS DE INTELIGENCIA ARTIFICIAL")
+    st.markdown("### Autenticação de Protocolos de Inteligência Artificial")
     st.write("---")
     
-    # Exibição do seu Mascote Robô Principal (Fica do lado esquerdo)
+    # Foto 1: Mascote Principal
     st.image("painel.png", use_container_width=True)
+    
+    st.write("")
+    
+    # Foto 2: Robô com o processador IA à mostra
+    st.image("robo_processador.png", use_container_width=True)
     
     st.write("---")
     
     # Tabela de Performance
-    st.markdown("### METRICAS DE PERFORMANCE EM PRODUTIVIDADE")
+    st.markdown("### Métricas de Performance em Produtividade")
     dados_comparativos = {
-        "ATIVIDADE": ["Minerar produtos", "Criar copy de venda", "Inserir link de afiliado", "Postar nos canais"],
-        "METODO MANUAL": ["45 minutos", "20 minutos", "5 minutos", "15 minutos"],
-        "SISTEMA RVCX": ["3 segundos", "1.5 segundo", "Automatizado", "Imediato"]
+        "Atividade": ["Minerar produtos", "Criar copy de venda", "Inserir link de afiliado", "Postar nos canais"],
+        "Método Manual": ["45 minutos", "20 minutos", "5 minutos", "15 minutos"],
+        "Sistema RVCX": ["3 segundos", "1.5 segundo", "Automático", "Imediato"]
     }
     st.table(dados_comparativos)
 
 with col_direita:
-    # Monitoramento Técnico de Conexão (Texto limpo simulando console real)
-    st.markdown("### STATUS DO SISTEMA")
-    st.text("STATUS DO MOTOR: ONLINE")
-    st.text("REDE NEURAL ACTIVATED: ASYNC_v3")
-    st.text("LATENCIA DE REDE: 12ms")
+    # Status Técnico
+    st.markdown("### Status do Sistema")
+    st.text("Status do motor: Operacional")
+    st.text("Rede neural: Ativa (ASYNC_v3)")
+    st.text("Latência de rede: 12ms")
     st.write("---")
     
-    # Terminal de comando limpo
-    st.text("LOG DE OPERACOES EM TEMPO REAL:")
+    # Terminal de comando
+    st.text("Log de operações em tempo real:")
     st.code("""
 [INFO] Inicializando RVCX Software...
 [OK] Conexao com Banco de Dados Shopee/Amazon estabelecida.
@@ -84,30 +119,33 @@ with col_direita:
     
     st.write("---")
     
-    # Imagem do robô apontando para o código Python real (Fica do lado direito)
+    # Foto 3: Robô no Escritório olhando faturamento
+    st.image("robo_escritorio.png", use_container_width=True)
+    
+    st.write("")
+    
+    # Foto 4: Robô apontando para o código Python
     st.image("robo_codigo.png", use_container_width=True)
     
     st.write("---")
     
-    # Abas de vantagens sem firulas
-    st.markdown("### ARQUITETURA CRIPTOGRAFADA")
-    tab1, tab2 = st.tabs(["MINERACAO", "POSTAGENS"])
+    # Abas de vantagens
+    st.markdown("### Arquitetura Criptografada")
+    tab1, tab2 = st.tabs(["Mineração", "Postagens"])
     with tab1:
-        st.write("O script roda em background minerando os produtos de maior engajamento e conversao do dia nas plataformas integradas.")
+        st.write("O script roda em background minerando os produtos de maior engajamento e conversão do dia nas plataformas integradas.")
     with tab2:
-        st.write("O robo estrutura o payload gerado pela IA e efetua o disparo em massa para os canais de ofertas configurados.")
+        st.write("O robô estrutura o payload gerado pela IA e efetua o disparo em massa para os canais de ofertas configurados.")
 
     st.write("---")
 
     # Área de Licenciamento e Botão
-    st.markdown("### LICENCIAMENTO VITALICIO")
-    st.markdown("## VALOR DO PROTOCOLO: R$ 29,90")
+    st.markdown("### Licenciamento Vitalício")
+    st.markdown("## R$ 29,90")
     st.write("")
 
     # --- CONFIGURAÇÃO DE CHECKOUT INTEGRADO (INFINITEPAY) ---
-    # Troque pelo seu usuario da InfinitePay quando puder
-    INFINITE_TAG = "sua_tag_aqui"  
-    
+    INFINITE_TAG = "sua_tag_aqui"  # Mude para sua tag real depois!
     item_nome = "RVCX_Robo_Afiliado"
     item_preco = 2990  
     pedido_id = "RVCX999" 
@@ -123,7 +161,7 @@ with col_direita:
     query_params = st.query_params
 
     if "capture_method" in query_params:
-        st.success("AUTENTICACAO CONFIRMADA. LICENCA VITALICIA ATIVADA.")
+        st.success("Autenticação confirmada. Licença vitalícia ativada.")
         script_texto = "# RVCX Software\nprint('Script Carregado')"
         st.download_button(
             label="DOWNLOAD RVCX_BOT.PY",
@@ -133,13 +171,13 @@ with col_direita:
             use_container_width=True
         )
     else:
-        st.link_button("ATIVAR LICENCA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
+        st.link_button("ATIVAR LICENÇA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
 
 st.write("---")
 # Perguntas Frequentes
 with st.container():
-    st.markdown("### PERGUNTAS FREQUENTES")
-    st.markdown("**Necessito de conhecimento previo em programacao?**")
-    st.write("Nao. O script e entregue totalmente estruturado. O pacote inclui instrucoes em formato de texto direto para inicializacao em menos de dois cliques.")
+    st.markdown("### Perguntas Frequentes")
+    st.markdown("**Necessito de conhecimento prévio em programação?**")
+    st.write("Não. O script é entregue totalmente estruturado. O pacote inclui instruções em formato de texto direto para inicialização em menos de dois cliques.")
 
-st.caption("RVCX Software Terminal. Transacoes processadas via gateway de seguranca InfinitePay.")
+st.caption("RVCX Software Terminal. Transações processadas via gateway de segurança InfinitePay.")
