@@ -17,8 +17,8 @@ st.markdown(
         display: none !important;
     }
     
-    /* Desativa interações de clique nas imagens */
-    img {
+    /* CORREÇÃO: Aplica a trava de clique APENAS nas tags de imagem reais, sem bloquear os botões do site */
+    [data-testid="stImage"] img {
         pointer-events: none !important;
     }
     
@@ -34,8 +34,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- LINK REAL DE COBRANÇA DA INFINITEPAY GENERADO PELO USUÁRIO ---
-link_pagamento = "https://infinitepay.io"
+# --- LINK REAL DE COBRANÇA ATUALIZADO VIA INTEGRADO ---
+link_pagamento = "https://checkout.infinitepay.io/ricardo-vieira-costa/miAR86vJWc"
 
 # Captura os parâmetros de retorno pós-pagamento
 query_params = st.query_params
@@ -46,7 +46,7 @@ pagamento_aprovado = "capture_method" in query_params
 # =========================================================================
 if pagamento_aprovado:
     
-    # Cabeçalho da Área de Membros - CORRIGIDO st.columns(3)
+    # Cabeçalho da Área de Membros
     col_logo_esq, col_logo_ctr, col_logo_dir = st.columns(3)
     with col_logo_ctr:
         st.image("logo_rvcx.png", use_container_width=True)
@@ -62,8 +62,10 @@ if pagamento_aprovado:
         st.markdown("### 💻 Versão PC (Windows)")
         st.write("Clique no botão abaixo para baixar o instalador seguro do software diretamente no seu computador.")
         
-        # Simulação do arquivo .exe
-        executavel_dados = b"Dados do seu arquivo executavel compilado aqui"
+        # Arquivo de simulação (Substitua pelos dados binários do seu instalador real futuramente)
+        executavel_dados = b"Executavel RVCX carregado com sucesso."
+        
+        # Botão nativo de download do Streamlit (Liberado e Clicável)
         st.download_button(
             label="📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE",
             data=executavel_dados,
@@ -96,14 +98,14 @@ if pagamento_aprovado:
 # TELA 2: PÁGINA DE VENDAS PRINCIPAL (SÓ APARECE SE NÃO ESTIVER PAGO)
 # =========================================================================
 else:
-    # --- HEADER DO PORTAL --- CORRIGIDO st.columns(3)
+    # --- HEADER DO PORTAL ---
     col_logo_esq, col_logo_ctr, col_logo_dir = st.columns(3)
     with col_logo_ctr:
         st.image("logo_rvcx.png", use_container_width=True)
 
     st.markdown("<h2 style='text-align: center; font-weight: bold;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h2>", unsafe_allow_html=True)
 
-    # --- BOTÃO DE VENDA IMEDIATA --- CORRIGIDO st.columns(3)
+    # --- BOTÃO DE VENDA IMEDIATA ---
     col_btn_esq, col_btn_ctr, col_btn_dir = st.columns(3)
     with col_btn_ctr:
         st.link_button("⚡ ATIVAR LICENÇA E INSTALAR SOFTWARE VITALÍCIO", link_pagamento, use_container_width=True)
@@ -213,4 +215,4 @@ else:
         st.markdown("**O que eu preciso ter para rodar?**")
         st.write("Apenas um computador ou notebook com sistema operacional Windows e conexão com a internet.")
 
-    st.caption("RVCX Software Terminal. Transações seguras via gateway de pagamento InfinitePay.")
+st.caption("RVCX Software Terminal. Transações seguras via gateway de pagamento InfinitePay.")
