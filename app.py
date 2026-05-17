@@ -2,20 +2,24 @@ import streamlit as st
 
 # 1. CONFIGURAÇÃO PADRÃO E SEGURA DE TELA CHEIA
 st.set_page_config(
-    page_title="RVCX Software - Painel de Controle", 
+    page_title="RVCX Software - Painel Oficial", 
     layout="wide"
 )
 
-# --- LINK REAL DE COBRANÇA DA INFINITEPAY GERADO PELO USUÁRIO ---
-link_pagamento = "https://link.infinitepay.io/ricardo-vieira-costa/VC1DLTEtSQ-Hqt0uDRoVZ-60,90"
+# --- LINK REAL DE COBRANÇA DA INFINITEPAY GENERADO PELO USUÁRIO ---
+link_pagamento = "https://infinitepay.io"
 
 # Captura os parâmetros de retorno pós-pagamento
 query_params = st.query_params
 pagamento_aprovado = "capture_method" in query_params
 
-# --- ESCUDO DO PORTAL (TOPO DO SITE) ---
-st.markdown("# RVCX SOFTWARE CORE v2.0")
-st.markdown("### SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS")
+# --- HEADER DO PORTAL COM LOGO DO SISTEMA ---
+# Exibe a logo centralizada que você configurou no repositório
+col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 2, 1])
+with col_logo_ctr:
+    st.image("logo_rvcx.png", use_container_width=True)
+
+st.markdown("<h3 style='text-align: center;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h3>", unsafe_allow_html=True)
 st.write("---")
 
 # --- BLOCO 1: APRESENTAÇÃO DO CORE (IMAGEM NA ESQUERDA, TEXTO NA DIREITA) ---
@@ -25,9 +29,9 @@ with col1_img:
 with col1_txt:
     st.markdown("## MASCOTE CENTRAL CORE")
     st.write(
-        "Este é o painel principal do robô RVCX. O sistema foi desenvolvido para "
-        "rodar scripts automatizados diretamente no seu computador ou servidor em nuvem, "
-        "executando rotinas programadas para organizar suas postagens e links de afiliado sem complicações."
+        "Este é o painel de controle do RVCX. O sistema foi desenvolvido em um aplicativo "
+        "executável para rodar diretamente no seu computador Windows, realizando todas as "
+        "rotinas programadas de postagens e links sem que você precise mexer em nenhuma linha de código."
     )
     st.text("Status da Engine: Ativa")
     st.write("")
@@ -44,8 +48,8 @@ col2_txt, col2_img = st.columns([1, 1.2])
 with col2_txt:
     st.markdown("## PAINEL DE MONITORAMENTO")
     st.write(
-        "Como visto na tela do sistema, o script foi estruturado para monitorar em tempo real "
-        "as páginas de ofertas mais quentes da Shopee e da Amazon. Ele faz varreduras rápidas nas listas "
+        "Como visto na tela do sistema, o aplicativo monitora em tempo real as páginas "
+        "de ofertas mais quentes da Shopee e da Amazon. Ele faz varreduras rápidas nas listas "
         "de mais vendidos para identificar os produtos exatos que mais possuem chance de conversão."
     )
     st.text("Varredura de dados: Ativa")
@@ -61,9 +65,9 @@ with col3_img:
 with col3_txt:
     st.markdown("## ORGANIZADOR DE TEXTO E LINKS")
     st.write(
-        "Desenvolvido inteiramente em Python, o robô organiza toda a estrutura da sua publicação. "
+        "O programa automatizado organiza toda a estrutura da sua publicação de afiliado. "
         "Ele junta o nome do produto selecionado, formata descrições diretas com hashtags em alta "
-        "e insere automaticamente o seu link de afiliado no formato correto pronto para publicação."
+        "e insere automaticamente o seu link de afiliado de forma limpa e configurada para o clique."
     )
     st.text("Geração de Conteúdo: Concluída")
 
@@ -74,8 +78,8 @@ col4_txt, col4_img = st.columns([1, 1.2])
 with col4_txt:
     st.markdown("## ENVIOS PROGRAMADOS E SEGURANÇA")
     st.write(
-        "A estrutura do código conta com comandos de pausas inteligentes (Sleep delay). Isso simula "
-        "o ritmo de digitação e cliques de uma pessoa real, permitindo enviar seus links promocionais "
+        "A estrutura interna do aplicativo conta com comandos de pausas inteligentes (Sleep delay). "
+        "Isso simula o ritmo humano de digitação e cliques, permitindo enviar seus links promocionais "
         "para seus canais e grupos de ofertas automáticos diminuindo drasticamente os riscos de bloqueio."
     )
     st.text("Protocolo Antispam: Operacional")
@@ -90,11 +94,11 @@ col_dados, col_checkout = st.columns(2)
 with col_dados:
     st.markdown("### LOG DE OPERAÇÕES EM TEMPO REAL")
     st.code("""
-[INFO] Inicializando Script RVCX...
+[INFO] Inicializando Aplicativo RVCX...
 [OK] Conexão com raspador Shopee/Amazon estabelecida.
 [OK] Integração de envio configurada com sucesso.
 [MONITORAMENTO] 14 Produtos quentes localizados nas últimas horas.
-[SISTEMA] Aguardando liberação do checkout para download do código...
+[SISTEMA] Aguardando liberação do checkout para download do aplicativo...
     """, language="text")
     
     st.markdown("### MÉTRICAS DE PERFORMANCE EM PRODUTIVIDADE")
@@ -109,21 +113,23 @@ with col_checkout:
     st.markdown("### LICENCIAMENTO VITALÍCIO")
     st.markdown("## VALOR DO PROTOCOLO: R$ 60,90")
     st.write("**A ativação inclui:**")
-    st.write("✔️ Arquivo original do script (.py) pronto para rodar.")
-    st.write("✔️ Manual explicativo passo a passo de como configurar seus links.")
-    st.write("✔️ Suporte direto via WhatsApp para te ajudar na primeira execução.")
-    st.write("✔️ Acesso vitalício sem cobrança de mensalidades.")
+    st.write("✔️ Link para download do instalador executável (.exe) do software RVCX.")
+    st.write("✔️ Vídeo tutorial passo a passo ensinando a abrir e usar no Windows.")
+    st.write("✔️ Suporte direto via WhatsApp para te ajudar na ativação inicial.")
+    st.write("✔️ Acesso vitalício ao programa sem nenhuma mensalidade oculta.")
     st.write("")
 
     if pagamento_aprovado:
         st.balloons()
         st.success("🎉 AUTENTICAÇÃO CONFIRMADA! Licença vitalícia ativada.")
-        script_texto = "# RVCX Software\nprint('Script Carregado')"
+        
+        # Simulação de download do executável compilado
+        executavel_dados = b"Dados do seu arquivo executavel compilado aqui"
         st.download_button(
-            label="DOWNLOAD RVCX_BOT.PY",
-            data=script_texto,
-            file_name="rvcx_bot.py",
-            mime="text/x-python",
+            label="📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE",
+            data=executavel_dados,
+            file_name="RVCX_Software_Installer.exe",
+            mime="application/octet-stream",
             use_container_width=True
         )
     else:
@@ -133,9 +139,9 @@ st.write("---")
 # Perguntas Frequentes
 with st.container():
     st.markdown("### Perguntas Frequentes")
-    st.markdown("**Necessito de conhecimento prévio em programação?**")
-    st.write("Não. O código é entregue todo comentado e organizado. Basta instalar as dependências explicadas no manual e dar o play.")
+    st.markdown("**Necessito de conhecimento prévio em programação ou Python?**")
+    st.write("Não. O sistema é entregue em formato de aplicativo comum (.exe). Você só precisa dar dois cliques para instalar e começar a usar através de uma interface visual simples.")
     st.markdown("**O que eu preciso ter para rodar?**")
-    st.write("Apenas um computador simples com Python instalado e os seus links de afiliado em mãos.")
+    st.write("Apenas um computador ou notebook com sistema operacional Windows e conexão com a internet.")
 
 st.caption("RVCX Software Terminal. Transações seguras via gateway de pagamento InfinitePay.")
