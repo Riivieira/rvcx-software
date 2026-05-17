@@ -6,17 +6,25 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- ESTILOS GLOBAL CSS PARA TRAVAR IMAGENS (REMOVER MAXIMIZAR) ---
+# --- ESTILOS GLOBAL CSS PARA SOLUCIONAR AS IMAGENS ---
 st.markdown(
     """
     <style>
-    /* Esconde o botão de tela cheia/maximizar do Streamlit */
-    button[title="View fullscreen"] {
+    /* Esconde o botão de Fullscreen/Maximizar de TODAS as imagens do site */
+    button[title="View fullscreen"], 
+    .stMainBlockContainer button,
+    [data-testid="stImageActionButton"] {
         display: none !important;
     }
-    /* Desativa interações de clique e zoom nas imagens para agir como elemento fixo */
+    
+    /* Desativa interações de clique nas imagens */
     img {
-        pointer-events: none;
+        pointer-events: none !important;
+    }
+    
+    /* Força especificamente a imagem da logo a ficar maior dentro do bloco */
+    div[data-testid="stImage"] img {
+        max-width: 100% !important;
     }
     </style>
     """,
@@ -31,8 +39,8 @@ query_params = st.query_params
 pagamento_aprovado = "capture_method" in query_params
 
 # --- HEADER DO PORTAL COM LOGO DO SISTEMA ---
-# Ajuste de proporção para deixar a logo centralizada e bem maior (coluna central expandida)
-col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 3, 1])
+# Mudamos a proporção para [0.5, 3, 0.5] para fechar as laterais e esticar a logo no centro
+col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([0.5, 3, 0.5])
 with col_logo_ctr:
     st.image("logo_rvcx.png", use_container_width=True)
 
