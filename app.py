@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- ESTILOS GLOBAL CSS ATUALIZADOS (CORREÇÃO DE CLIQUES E BOTÃO COM BRILHO) ---
+# --- ESTILOS GLOBAL CSS (MÁXIMA PERFORMANCE VISUAL E CORREÇÃO DE CLIQUES) ---
 st.markdown(
     """
     <style>
@@ -17,42 +17,43 @@ st.markdown(
         display: none !important;
     }
     
-    /* Trava clique APENAS em imagens normais, sem interferir em botões ou links */
+    /* Evita que arrastem as imagens, mantendo os botões funcionais */
     [data-testid="stImage"] img {
         pointer-events: none !important;
     }
     
-    /* Ajusta a logo para ficar centralizada */
+    /* Ajusta a logo superior */
     div[data-testid="stImage"] img {
         max-width: 100% !important;
-        max-height: 200px !important;
+        max-height: 180px !important;
         object-fit: contain !important;
         margin: 0 auto !important;
     }
 
-    /* ESTILO EXCLUSIVO DO BOTÃO DE DOWNLOAD NEON */
-    .btn-download-rvcx {
+    /* ESTILO DO BOTÃO DE DOWNLOAD EXCLUSIVO COM BRILHO NEON CIANO */
+    .link-download-neon {
         display: block;
         width: 100%;
-        background-color: #00ffcc;
+        background-color: #00ffcc !important;
         color: #0d1117 !important;
         text-align: center;
         padding: 14px 20px;
         font-size: 16px;
         font-weight: bold;
-        text-decoration: none;
+        text-decoration: none !important;
         border-radius: 8px;
         border: none;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
-        box-shadow: 0 0 5px rgba(0, 255, 204, 0.2);
+        box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
     }
     
-    /* Efeito de passar o mouse por cima (Hover com Brilho Intenso) */
-    .btn-download-rvcx:hover {
-        background-color: #00ffcc;
-        box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc;
+    /* Efeito ao passar o mouse por cima (Hover) */
+    .link-download-neon:hover {
+        background-color: #00ffcc !important;
+        box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc !important;
         transform: scale(1.02);
+        color: #0d1117 !important;
     }
     </style>
     """,
@@ -61,6 +62,7 @@ st.markdown(
 
 # --- LINK REAL DE COBRANÇA DA INFINITEPAY ---
 link_pagamento = "https://infinitepay.io"
+link_whatsapp_chave = "https://w.app"
 
 # Captura os parâmetros de retorno pós-pagamento
 query_params = st.query_params
@@ -77,69 +79,47 @@ if pagamento_aprovado:
         st.image("logo_rvcx.png", use_container_width=True)
         
     st.markdown("<h2 style='text-align: center; font-weight: bold; color: #00ffcc;'>PORTAL OFICIAL DE DOWNLOAD & LICENCIAMENTO</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; font-size: 16px;'>Sua licença vitalícia foi identificada e autenticada com sucesso no terminal.</p>", unsafe_allow_html=True)
     st.write("---")
     
-    # Divisão em duas colunas organizadas para os arquivos
+    # EXIGÊNCIA 1: PEDIDO DE CHAVE EM PRIMEIRO LUGAR (NO TOPO)
+    st.markdown("### 🔑 PASSO 1: LIBERAÇÃO DA SUA CHAVE DE ACESSO")
+    st.write("O software possui um sistema de segurança vinculado ao hardware do seu computador para evitar pirataria.")
+    st.write("**Clique no botão abaixo imediatamente para abrir nosso canal e receber a sua chave de ativação:**")
+    st.write("")
+    st.link_button("🔑 CLIQUE AQUI PARA PEDIR SUA CHAVE DE ATIVAÇÃO NO WHATSAPP", link_whatsapp_chave, use_container_width=True)
+    
+    st.write("---")
+    
+    # EXIGÊNCIA 2: DOWNLOAD DO ARQUIVO REAL VIA LINK DE REDIRECIONAMENTO COM BRILHO
+    st.markdown("### 📦 PASSO 2: DOWNLOAD DOS INSTALADORES")
+    
     col_down_esq, col_down_dir = st.columns(2)
     
     with col_down_esq:
-        st.markdown("### 💻 Versão PC (Windows)")
-        st.write("Clique no botão abaixo para baixar o instalador seguro do software diretamente no seu computador.")
+        st.markdown("#### 💻 Versão PC (Windows)")
+        st.write("Clique no botão luminoso abaixo para iniciar o download do instalador seguro diretamente no computador.")
         st.write("")
         
-        # LINK INTERNO SEGURO PARA DOWNLOAD REAL (Aponta para um arquivo interno limpo por enquanto)
-        # Quando seu robô estiver pronto, basta colocar o executável com esse exato nome na mesma pasta do repositório
-        try:
-            with open("RVCX_Software_Installer.exe", "rb") as file:
-                btn_dados = file.read()
-        except:
-            btn_dados = b"RVCX Software Executavel - Base Pronta."
-
-        st.download_button(
-            label="📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE",
-            data=btn_dados,
-            file_name="RVCX_Software_Installer.exe",
-            mime="application/octet-stream",
-            use_container_width=True
-        )
-        
-        # Script injetado para aplicar a classe de brilho neon no botão nativo do Streamlit
+        # Link HTML direto para o arquivo do repositório (substitua pelo link do arquivo final se necessário)
+        # O botão puxa direto o instalador guardado na raiz do seu servidor/GitHub
         st.markdown(
-            """
-            <script>
-                var buttons = window.parent.document.querySelectorAll('button');
-                buttons.forEach(function(button) {
-                    if (button.innerText.includes('BAIXAR INSTALADOR')) {
-                        button.classList.add('btn-download-rvcx');
-                    }
-                });
-            </script>
-            """, 
+            f'<a href="RVCX_Software_Installer.exe" download class="link-download-neon">'
+            f'📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE'
+            f'</a>', 
             unsafe_allow_html=True
         )
-        
         st.write("")
-        st.info("ℹ️ Sistema compatível com Windows 10 e Windows 11.")
+        st.caption("ℹ️ Compatível com sistemas Windows 10 e Windows 11.")
 
     with col_down_dir:
-        st.markdown("### 📱 Versão Celular (Mobile)")
-        st.write("A arquitetura para dispositivos móveis está passando por testes finais de integração de rede.")
+        st.markdown("#### 📱 Versão Celular (Mobile)")
+        st.write("A arquitetura para celulares está passando por testes finais em nosso servidor dedicado.")
         st.write("")
         st.button("🔄 VERSÃO MOBILE EM DESENVOLVIMENTO", disabled=True, use_container_width=True)
-        st.caption("Acesso gratuito garantido para detentores da licença vitalícia assim que liberado.")
+        st.caption("Acesso gratuito garantido para todos os clientes vitalícios assim que liberado.")
         
     st.write("---")
-    
-    # Seção de Liberação da Chave de Acesso (Texto Ajustado Explicito)
-    st.markdown("### 🔑 Ativação Obligatória do Software")
-    st.write("O aplicativo executável necessita de uma chave de ativação criptografada baseada no hardware do seu PC para funcionar e evitar pirataria.")
-    st.write("**Para liberar o seu acesso imediato, clique no botão abaixo para solicitar a sua chave pessoal:**")
-    st.write("")
-    st.link_button("👉 CLIQUE AQUI PARA PEGAR SUA CHAVE DE ATIVAÇÃO", "https://w.app/7k3fa5", use_container_width=True)
-    
-    st.write("")
-    st.caption("RVCX Software Terminal. Licença verificada de forma assíncrona.")
+    st.caption("RVCX Software Terminal. Licença verificada de forma síncrona via nuvem.")
 
 # =========================================================================
 # TELA 2: PÁGINA DE VENDAS PRINCIPAL (SÓ APARECE SE NÃO ESTIVER PAGO)
@@ -159,8 +139,8 @@ else:
 
     st.write("---")
 
-    # --- BLOCO 1 ---
-    col1_img, col1_txt = st.columns([1.2, 1])
+    # --- BLOCO 1 (PROPORÇÃO DAS IMAGENS TOTALMENTE RESTAURADA) ---
+    col1_img, col1_txt = st.columns([1.5, 1])
     with col1_img:
         st.image("painel.png", use_container_width=True)
     with col1_txt:
@@ -177,7 +157,7 @@ else:
     st.write("---")
 
     # --- BLOCO 2 ---
-    col2_txt, col2_img = st.columns([1, 1.2])
+    col2_txt, col2_img = st.columns([1, 1.5])
     with col2_txt:
         st.markdown("<h2>PAINEL DE MONITORAMENTO</h2>", unsafe_allow_html=True)
         st.write(
@@ -192,7 +172,7 @@ else:
     st.write("---")
 
     # --- BLOCO 3 ---
-    col3_img, col3_txt = st.columns([1.2, 1])
+    col3_img, col3_txt = st.columns([1.5, 1])
     with col3_img:
         st.image("robo_codigo.png", use_container_width=True)
     with col3_txt:
@@ -207,7 +187,7 @@ else:
     st.write("---")
 
     # --- BLOCO 4 ---
-    col4_txt, col4_img = st.columns([1, 1.2])
+    col4_txt, col4_img = st.columns([1, 1.5])
     with col4_txt:
         st.markdown("<h2>ENVIOS PROGRAMADOS E SEGURANÇA</h2>", unsafe_allow_html=True)
         st.write(
@@ -221,7 +201,7 @@ else:
 
     st.write("---")
 
-    # --- SEÇÃO INFERIOR: METRICAS ---
+    # --- SEÇÃO INFERIOR: METRICAS E EXIGÊNCIA DO SUPORTE PRINCIPAL ---
     col_dados, col_checkout = st.columns(2)
 
     with col_dados:
@@ -252,6 +232,9 @@ else:
         st.write("✔️ Acesso vitalício ao programa sem nenhuma mensalidade oculta.")
         st.write("")
         st.link_button("⚡ ATIVAR LICENÇA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
+        st.write("")
+        # Botão de suporte adicionado na página de vendas principal
+        st.link_button("💬 REFEIÇÃO DE DÚVIDAS? FALE COM O SUPORTE ANTES DE COMPRAR", link_whatsapp_chave, use_container_width=True)
 
     st.write("---")
     # Perguntas Frequentes
@@ -262,4 +245,4 @@ else:
         st.markdown("**O que eu preciso ter para rodar?**")
         st.write("Apenas um computador ou notebook com sistema operacional Windows e conexão com a internet.")
 
-st.caption("RVCX Software Terminal. Transações seguras via gateway de pagamento InfinitePay.")
+    st.caption("RVCX Software Terminal. Transações seguras via gateway de pagamento InfinitePay.")
