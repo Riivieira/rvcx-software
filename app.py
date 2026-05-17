@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- ESTILOS GLOBAL CSS (MÁXIMA PERFORMANCE VISUAL E CORREÇÃO DE CLIQUES) ---
+# --- ESTILOS GLOBAL CSS (IMAGENS GRANDES E BOTÃO LUMINOSO) ---
 st.markdown(
     """
     <style>
@@ -17,15 +17,15 @@ st.markdown(
         display: none !important;
     }
     
-    /* Evita que arrastem as imagens, mantendo os botões funcionais */
+    /* Evita problemas de arrastar imagem, mantendo os botões funcionais */
     [data-testid="stImage"] img {
         pointer-events: none !important;
     }
     
-    /* Ajusta a logo superior */
+    /* Força a logo superior a ficar visivelmente maior na tela */
     div[data-testid="stImage"] img {
         max-width: 100% !important;
-        max-height: 180px !important;
+        max-height: 380px !important;
         object-fit: contain !important;
         margin: 0 auto !important;
     }
@@ -48,7 +48,7 @@ st.markdown(
         box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
     }
     
-    /* Efeito ao passar o mouse por cima (Hover) */
+    /* Efeito hover do botão luminoso */
     .link-download-neon:hover {
         background-color: #00ffcc !important;
         box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc !important;
@@ -60,9 +60,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- LINK REAL DE COBRANÇA DA INFINITEPAY ---
-link_pagamento = "https://infinitepay.io"
-link_whatsapp_chave = "https://w.app"
+# --- SEUS LINKS SEPARADOS E CONFIGURADOS ---
+link_pagamento = "https://checkout.infinitepay.io/ricardo-vieira-costa/miAR86vJWc"
+link_whatsapp_chave = "https://w.app/7k3fa5"
+link_whatsapp_suporte = "https://w.app/0ijobe"
 
 # Captura os parâmetros de retorno pós-pagamento
 query_params = st.query_params
@@ -74,23 +75,23 @@ pagamento_aprovado = "capture_method" in query_params
 if pagamento_aprovado:
     
     # Cabeçalho da Área de Membros
-    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns(3)
+    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 2, 1])
     with col_logo_ctr:
         st.image("logo_rvcx.png", use_container_width=True)
         
     st.markdown("<h2 style='text-align: center; font-weight: bold; color: #00ffcc;'>PORTAL OFICIAL DE DOWNLOAD & LICENCIAMENTO</h2>", unsafe_allow_html=True)
     st.write("---")
     
-    # EXIGÊNCIA 1: PEDIDO DE CHAVE EM PRIMEIRO LUGAR (NO TOPO)
+    # SOLICITAÇÃO DA CHAVE EM PRIMEIRO LUGAR (NO TOPO DA ÁREA DE DOWNLOAD)
     st.markdown("### 🔑 PASSO 1: LIBERAÇÃO DA SUA CHAVE DE ACESSO")
     st.write("O software possui um sistema de segurança vinculado ao hardware do seu computador para evitar pirataria.")
-    st.write("**Clique no botão abaixo imediatamente para abrir nosso canal e receber a sua chave de ativação:**")
+    st.write("**Clique no botão abaixo imediatamente para abrir nosso canal de ativação e receber seu serial:**")
     st.write("")
     st.link_button("🔑 CLIQUE AQUI PARA PEDIR SUA CHAVE DE ATIVAÇÃO NO WHATSAPP", link_whatsapp_chave, use_container_width=True)
     
     st.write("---")
     
-    # EXIGÊNCIA 2: DOWNLOAD DO ARQUIVO REAL VIA LINK DE REDIRECIONAMENTO COM BRILHO
+    # DOWNLOAD DO ARQUIVO REAL VIA LINK DE REDIRECIONAMENTO COM BRILHO
     st.markdown("### 📦 PASSO 2: DOWNLOAD DOS INSTALADORES")
     
     col_down_esq, col_down_dir = st.columns(2)
@@ -100,8 +101,7 @@ if pagamento_aprovado:
         st.write("Clique no botão luminoso abaixo para iniciar o download do instalador seguro diretamente no computador.")
         st.write("")
         
-        # Link HTML direto para o arquivo do repositório (substitua pelo link do arquivo final se necessário)
-        # O botão puxa direto o instalador guardado na raiz do seu servidor/GitHub
+        # Link HTML direto focado no download do executável
         st.markdown(
             f'<a href="RVCX_Software_Installer.exe" download class="link-download-neon">'
             f'📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE'
@@ -126,21 +126,21 @@ if pagamento_aprovado:
 # =========================================================================
 else:
     # --- HEADER DO PORTAL ---
-    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns(3)
+    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 2, 1])
     with col_logo_ctr:
         st.image("logo_rvcx.png", use_container_width=True)
 
     st.markdown("<h2 style='text-align: center; font-weight: bold;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h2>", unsafe_allow_html=True)
 
     # --- BOTÃO DE VENDA IMEDIATA ---
-    col_btn_esq, col_btn_ctr, col_btn_dir = st.columns(3)
+    col_btn_esq, col_btn_ctr, col_btn_dir = st.columns([1, 2, 1])
     with col_btn_ctr:
         st.link_button("⚡ ATIVAR LICENÇA E INSTALAR SOFTWARE VITALÍCIO", link_pagamento, use_container_width=True)
 
     st.write("---")
 
-    # --- BLOCO 1 (PROPORÇÃO DAS IMAGENS TOTALMENTE RESTAURADA) ---
-    col1_img, col1_txt = st.columns([1.5, 1])
+    # --- BLOCO 1 ---
+    col1_img, col1_txt = st.columns(2)
     with col1_img:
         st.image("painel.png", use_container_width=True)
     with col1_txt:
@@ -157,7 +157,7 @@ else:
     st.write("---")
 
     # --- BLOCO 2 ---
-    col2_txt, col2_img = st.columns([1, 1.5])
+    col2_txt, col2_img = st.columns(2)
     with col2_txt:
         st.markdown("<h2>PAINEL DE MONITORAMENTO</h2>", unsafe_allow_html=True)
         st.write(
@@ -172,7 +172,7 @@ else:
     st.write("---")
 
     # --- BLOCO 3 ---
-    col3_img, col3_txt = st.columns([1.5, 1])
+    col3_img, col3_txt = st.columns(2)
     with col3_img:
         st.image("robo_codigo.png", use_container_width=True)
     with col3_txt:
@@ -187,7 +187,7 @@ else:
     st.write("---")
 
     # --- BLOCO 4 ---
-    col4_txt, col4_img = st.columns([1, 1.5])
+    col4_txt, col4_img = st.columns(2)
     with col4_txt:
         st.markdown("<h2>ENVIOS PROGRAMADOS E SEGURANÇA</h2>", unsafe_allow_html=True)
         st.write(
@@ -195,13 +195,13 @@ else:
             "Isso simula o ritmo humano de digitação e cliques, permitindo enviar seus links promocionais "
             "para seus canais e grupos de ofertas automáticos diminuindo drasticamente os riscos de bloqueio."
         )
-        st.text("Protocolo Antispam: Operacional")
+        st.text("Protocolo Antispam: Operational")
     with col4_img:
         st.image("robo_processador.png", use_container_width=True)
 
     st.write("---")
 
-    # --- SEÇÃO INFERIOR: METRICAS E EXIGÊNCIA DO SUPORTE PRINCIPAL ---
+    # --- SEÇÃO INFERIOR: METRICAS ---
     col_dados, col_checkout = st.columns(2)
 
     with col_dados:
@@ -233,8 +233,8 @@ else:
         st.write("")
         st.link_button("⚡ ATIVAR LICENÇA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
         st.write("")
-        # Botão de suporte adicionado na página de vendas principal
-        st.link_button("💬 REFEIÇÃO DE DÚVIDAS? FALE COM O SUPORTE ANTES DE COMPRAR", link_whatsapp_chave, use_container_width=True)
+        # Botão de suporte configurado com o link de dúvidas (0ijobe)
+        st.link_button("💬 TENHO DÚVIDAS? FALAR COM O SUPORTE NO WHATSAPP", link_whatsapp_suporte, use_container_width=True)
 
     st.write("---")
     # Perguntas Frequentes
