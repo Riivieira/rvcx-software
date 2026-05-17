@@ -2,7 +2,7 @@ import streamlit as st
 
 # 1. CONFIGURAÇÃO PADRÃO E SEGURA DE TELA CHEIA
 st.set_page_config(
-    page_title="RVCX Software - Portal de Download", 
+    page_title="RVCX Software - Portal Oficial", 
     layout="wide"
 )
 
@@ -46,8 +46,8 @@ pagamento_aprovado = "capture_method" in query_params
 # =========================================================================
 if pagamento_aprovado:
     
-    # Cabeçalho da Área de Membros
-    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 2, 1])
+    # Cabeçalho da Área de Membros - CORRIGIDO st.columns(3)
+    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns(3)
     with col_logo_ctr:
         st.image("logo_rvcx.png", use_container_width=True)
         
@@ -96,15 +96,15 @@ if pagamento_aprovado:
 # TELA 2: PÁGINA DE VENDAS PRINCIPAL (SÓ APARECE SE NÃO ESTIVER PAGO)
 # =========================================================================
 else:
-    # --- HEADER DO PORTAL ---
-    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns()
+    # --- HEADER DO PORTAL --- CORRIGIDO st.columns(3)
+    col_logo_esq, col_logo_ctr, col_logo_dir = st.columns(3)
     with col_logo_ctr:
         st.image("logo_rvcx.png", use_container_width=True)
 
     st.markdown("<h2 style='text-align: center; font-weight: bold;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h2>", unsafe_allow_html=True)
 
-    # --- BOTÃO DE VENDA IMEDIATA ---
-    col_btn_esq, col_btn_ctr, col_btn_dir = st.columns()
+    # --- BOTÃO DE VENDA IMEDIATA --- CORRIGIDO st.columns(3)
+    col_btn_esq, col_btn_ctr, col_btn_dir = st.columns(3)
     with col_btn_ctr:
         st.link_button("⚡ ATIVAR LICENÇA E INSTALAR SOFTWARE VITALÍCIO", link_pagamento, use_container_width=True)
 
