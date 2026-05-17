@@ -42,17 +42,17 @@ query_params = st.query_params
 pagamento_aprovado = "capture_method" in query_params
 
 # --- HEADER DO PORTAL COM LOGO DO SISTEMA ---
-col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 4, 1])
+col_logo_esq, col_logo_ctr, col_logo_dir = st.columns()
 with col_logo_ctr:
     st.image("logo_rvcx.png", use_container_width=True)
 
 st.markdown("<h2 style='text-align: center; font-weight: bold;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h2>", unsafe_allow_html=True)
 
 # --- BOTÃO DE VENDA IMEDIATA (DIRETO NA ENTRADA DO SITE) ---
-col_btn_esq, col_btn_ctr, col_btn_dir = st.columns([1, 2, 1])
+col_btn_esq, col_btn_ctr, col_btn_dir = st.columns()
 with col_btn_ctr:
     if pagamento_aprovado:
-        st.success("🎉 LICENÇA ATIVADA! Role até o final para baixar.")
+        st.success("🎉 LICENÇA ATIVADA! Os botões de download foram liberados no final do painel.")
     else:
         st.link_button("⚡ ATIVAR LICENÇA E INSTALAR SOFTWARE VITALÍCIO", link_pagamento, use_container_width=True)
 
@@ -85,7 +85,7 @@ with col2_txt:
     st.markdown("<h2>PAINEL DE MONITORAMENTO</h2>", unsafe_allow_html=True)
     st.write(
         "Como visto na tela do sistema, o aplicativo monitora em tempo real as páginas "
-        "de ofertas mais quentes da Shopee e da Amazon. He faz varreduras rápidas nas listas "
+        "de ofertas mais quentes da Shopee e da Amazon. Ele faz varreduras rápidas nas listas "
         "de mais vendidos para identificar os produtos exatos que mais possuem chance de conversão."
     )
     st.text("Varredura de dados: Ativa")
@@ -157,17 +157,28 @@ with col_checkout:
 
     if pagamento_aprovado:
         st.balloons()
-        st.success("🎉 AUTENTICAÇÃO CONFIRMADA! Licença vitalícia ativada.")
+        st.success("🎉 AUTENTICAÇÃO CONFIRMADA! Licença vitalícia ativa.")
         
-        # Simulação de download do executável compilado
-        executavel_dados = b"Dados do seu arquivo executavel compilado aqui"
-        st.download_button(
-            label="📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE",
-            data=executavel_dados,
-            file_name="RVCX_Software_Installer.exe",
-            mime="application/octet-stream",
-            use_container_width=True
-        )
+        # Criação de abas para separar os downloads atuais e futuros
+        aba_pc, aba_celular = st.tabs(["💻 Versão PC (Windows)", "📱 Versão Celular (Mobile)"])
+        
+        with aba_pc:
+            st.write("Clique no botão abaixo para baixar o instalador oficial:")
+            # Substitua pelo binário real do seu instalador quando compilar
+            executavel_dados = b"Dados do seu arquivo executavel compilado aqui"
+            st.download_button(
+                label="📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE",
+                data=executavel_dados,
+                file_name="RVCX_Software_Installer.exe",
+                mime="application/octet-stream",
+                use_container_width=True
+            )
+            st.info("💡 Lembrete: Siga as instruções do vídeo tutorial enviado no seu WhatsApp de suporte.")
+            
+        with aba_celular:
+            st.warning("⚠️ Versão Mobile em Desenvolvimento")
+            st.write("Como detentor da licença vitalícia, você terá acesso gratuito aqui assim que o aplicativo para celular for lançado oficialmente.")
+            st.button("🔄 CHECAR ATUALIZAÇÕES DISPONÍVEIS", disabled=True, use_container_width=True)
     else:
         st.link_button("⚡ ATIVAR LICENÇA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
 
