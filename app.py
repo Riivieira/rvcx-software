@@ -42,14 +42,15 @@ query_params = st.query_params
 pagamento_aprovado = "capture_method" in query_params
 
 # --- HEADER DO PORTAL COM LOGO DO SISTEMA ---
-col_logo_esq, col_logo_ctr, col_logo_dir = st.columns()
+# CORREÇÃO: Definido explicitamente as proporções [1, 2, 1] para evitar o TypeError
+col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 2, 1])
 with col_logo_ctr:
     st.image("logo_rvcx.png", use_container_width=True)
 
 st.markdown("<h2 style='text-align: center; font-weight: bold;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h2>", unsafe_allow_html=True)
 
 # --- BOTÃO DE VENDA IMEDIATA (DIRETO NA ENTRADA DO SITE) ---
-col_btn_esq, col_btn_ctr, col_btn_dir = st.columns()
+col_btn_esq, col_btn_ctr, col_btn_dir = st.columns([1, 2, 1])
 with col_btn_ctr:
     if pagamento_aprovado:
         st.success("🎉 LICENÇA ATIVADA! Os botões de download foram liberados no final do painel.")
@@ -67,7 +68,7 @@ with col1_txt:
     st.write(
         "Este é o painel de controle do RVCX. O sistema foi desenvolvido em um aplicativo "
         "executável para rodar diretamente no seu computador Windows, realizando todas as "
-        "rotinas programadas de postagens e links sem que você precise mexer em nenhuma linha de código."
+        "rotinas programadas de postagens e links sem que você precise mexer in nenhuma linha de código."
     )
     st.text("Status da Engine: Ativa")
     st.write("")
@@ -164,7 +165,6 @@ with col_checkout:
         
         with aba_pc:
             st.write("Clique no botão abaixo para baixar o instalador oficial:")
-            # Substitua pelo binário real do seu instalador quando compilar
             executavel_dados = b"Dados do seu arquivo executavel compilado aqui"
             st.download_button(
                 label="📦 BAIXAR INSTALADOR RVCX_SOFTWARE.EXE",
