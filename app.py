@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- ESTILOS GLOBAL CSS PARA SOLUCIONAR AS IMAGENS ---
+# --- ESTILOS GLOBAL CSS PARA SOLUCIONAR AS IMAGENS E OTIMIZAR CONVERSÃO ---
 st.markdown(
     """
     <style>
@@ -22,9 +22,12 @@ st.markdown(
         pointer-events: none !important;
     }
     
-    /* Força especificamente a imagem da logo a ficar maior dentro do bloco */
+    /* Ajusta a logo para ficar grande, mas sem engolir a tela inteira (limita altura) */
     div[data-testid="stImage"] img {
         max-width: 100% !important;
+        max-height: 280px !important;
+        object-fit: contain !important;
+        margin: 0 auto !important;
     }
     </style>
     """,
@@ -39,12 +42,20 @@ query_params = st.query_params
 pagamento_aprovado = "capture_method" in query_params
 
 # --- HEADER DO PORTAL COM LOGO DO SISTEMA ---
-# Mudamos a proporção para [0.5, 3, 0.5] para fechar as laterais e esticar a logo no centro
-col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([0.5, 3, 0.5])
+col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 4, 1])
 with col_logo_ctr:
     st.image("logo_rvcx.png", use_container_width=True)
 
-st.markdown("<h3 style='text-align: center;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h3>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center; font-weight: bold;'>SISTEMA OPERACIONAL DE AUTOMAÇÃO E CRIAÇÃO DE POSTS PARA AFILIADOS</h2>", unsafe_allow_html=True)
+
+# --- BOTÃO DE VENDA IMEDIATA (DIRETO NA ENTRADA DO SITE) ---
+col_btn_esq, col_btn_ctr, col_btn_dir = st.columns([1, 2, 1])
+with col_btn_ctr:
+    if pagamento_aprovado:
+        st.success("🎉 LICENÇA ATIVADA! Role até o final para baixar.")
+    else:
+        st.link_button("⚡ ATIVAR LICENÇA E INSTALAR SOFTWARE VITALÍCIO", link_pagamento, use_container_width=True)
+
 st.write("---")
 
 # --- BLOCO 1: APRESENTAÇÃO DO CORE (IMAGEM NA ESQUERDA, TEXTO NA DIREITA) ---
@@ -52,7 +63,7 @@ col1_img, col1_txt = st.columns([1.2, 1])
 with col1_img:
     st.image("painel.png", use_container_width=True)
 with col1_txt:
-    st.markdown("## MASCOTE CENTRAL CORE")
+    st.markdown("<h2>MASCOTE CENTRAL CORE</h2>", unsafe_allow_html=True)
     st.write(
         "Este é o painel de controle do RVCX. O sistema foi desenvolvido em um aplicativo "
         "executável para rodar diretamente no seu computador Windows, realizando todas as "
@@ -64,17 +75,17 @@ with col1_txt:
     if pagamento_aprovado:
         st.success("LICENÇA ATIVADA.")
     else:
-        st.link_button("⚡ ATIVAR LICENÇA E INSTALAR PROTOCOLO", link_pagamento, use_container_width=True)
+        st.link_button("⚡ COMPRAR LICENÇA RVCX", link_pagamento, use_container_width=True)
 
 st.write("---")
 
 # --- BLOCO 2: MINERAÇÃO E TELAS (TEXTO NA ESQUERDA, IMAGEM NA DIREITA) ---
 col2_txt, col2_img = st.columns([1, 1.2])
 with col2_txt:
-    st.markdown("## PAINEL DE MONITORAMENTO")
+    st.markdown("<h2>PAINEL DE MONITORAMENTO</h2>", unsafe_allow_html=True)
     st.write(
         "Como visto na tela do sistema, o aplicativo monitora em tempo real as páginas "
-        "de ofertas mais quentes da Shopee e da Amazon. Ele faz varreduras rápidas nas listas "
+        "de ofertas mais quentes da Shopee e da Amazon. He faz varreduras rápidas nas listas "
         "de mais vendidos para identificar os produtos exatos que mais possuem chance de conversão."
     )
     st.text("Varredura de dados: Ativa")
@@ -88,7 +99,7 @@ col3_img, col3_txt = st.columns([1.2, 1])
 with col3_img:
     st.image("robo_codigo.png", use_container_width=True)
 with col3_txt:
-    st.markdown("## ORGANIZADOR DE TEXTO E LINKS")
+    st.markdown("<h2>ORGANIZADOR DE TEXTO E LINKS</h2>", unsafe_allow_html=True)
     st.write(
         "O programa automatizado organiza toda a estrutura da sua publicação de afiliado. "
         "Ele junta o nome do produto selecionado, formata descrições diretas com hashtags em alta "
@@ -101,7 +112,7 @@ st.write("---")
 # --- BLOCO 4: ARQUITETURA NEURAL (TEXTO NA ESQUERDA, IMAGEM NA DIREITA) ---
 col4_txt, col4_img = st.columns([1, 1.2])
 with col4_txt:
-    st.markdown("## ENVIOS PROGRAMADOS E SEGURANÇA")
+    st.markdown("<h2>ENVIOS PROGRAMADOS E SEGURANÇA</h2>", unsafe_allow_html=True)
     st.write(
         "A estrutura interna do aplicativo conta com comandos de pausas inteligentes (Sleep delay). "
         "Isso simula o ritmo humano de digitação e cliques, permitindo enviar seus links promocionais "
