@@ -6,6 +6,23 @@ st.set_page_config(
     layout="wide"
 )
 
+# --- ESTILOS GLOBAL CSS PARA TRAVAR IMAGENS (REMOVER MAXIMIZAR) ---
+st.markdown(
+    """
+    <style>
+    /* Esconde o botão de tela cheia/maximizar do Streamlit */
+    button[title="View fullscreen"] {
+        display: none !important;
+    }
+    /* Desativa interações de clique e zoom nas imagens para agir como elemento fixo */
+    img {
+        pointer-events: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # --- LINK REAL DE COBRANÇA DA INFINITEPAY GENERADO PELO USUÁRIO ---
 link_pagamento = "https://infinitepay.io"
 
@@ -14,8 +31,8 @@ query_params = st.query_params
 pagamento_aprovado = "capture_method" in query_params
 
 # --- HEADER DO PORTAL COM LOGO DO SISTEMA ---
-# Exibe a logo centralizada que você configurou no repositório
-col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 2, 1])
+# Ajuste de proporção para deixar a logo centralizada e bem maior (coluna central expandida)
+col_logo_esq, col_logo_ctr, col_logo_dir = st.columns([1, 3, 1])
 with col_logo_ctr:
     st.image("logo_rvcx.png", use_container_width=True)
 
